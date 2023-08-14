@@ -55,11 +55,42 @@
                                             <td>{{$persona->fecha_nacimiento}}</td>
                                             <td>{{$persona->tipo_persona}}</td>
                                             <td><a href="{{url('personas/'.$persona->id.'/edit')}}" class="btn btn-primary">Editar</a></td>
-                                            <td><a href="{{url('personas/'.$persona->id.'/destroy')}}" class="btn btn-danger">Eliminar</a></td>
-                                           
+                                            <td>
+                                                <form action="{{url('personas/'.$persona->id)}}" method="POST">
+                                                    @method("DELETE")
+                                                    @csrf
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop{{$persona->id}}">
+                                                        Eliminar
+                                                    </button>
+                                                    
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="staticBackdrop{{$persona->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel " aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Advertencia...</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                
+                                                                ¿Esta Seguro De Eliminar A La Paersona: {{$persona->nombres}} {{$persona->apellidos}}? 
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Aceptar</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </form> 
+                                            </td>
+                                            
                                         </tr>
                                         
-                                       @endforeach
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

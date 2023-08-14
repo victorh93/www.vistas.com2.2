@@ -108,8 +108,10 @@ class PersonaController extends Controller
      * 
      *   Elimina el recurso especificado del almacenamiento.
      */
-    public function destroy(persona $persona)
+    public function destroy($id)
     {
-        //
+        $per=persona::find($id);
+        $per->delete();
+        return redirect("personas");
     }
 }
